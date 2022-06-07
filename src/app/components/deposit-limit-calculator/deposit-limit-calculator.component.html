@@ -1,0 +1,41 @@
+<div class="outer-container">
+	<div class="inner-container">
+		<mat-accordion>
+			<mat-expansion-panel [expanded]="true">
+				<mat-expansion-panel-header class="header">
+					<mat-panel-title class="title">
+						Deposit Calculator
+					</mat-panel-title>
+				</mat-expansion-panel-header>
+				<div class="content">
+					<div class="content-title">
+						<p>When and how much can i deposit?</p>
+						<mat-icon class="icon-display" aria-hidden="false" aria-label="Example home icon"
+							[ngStyle]="{'color':'grey'}">
+							info</mat-icon>
+					</div>
+					<mat-tab-group>
+						<mat-tab label="By Amount" class="content-amount">
+							<div class="content-amount-title">
+								Enter the amount you want to deposit and we will show you the date when you will be able to do so.
+							</div>
+
+							<div class="content-amount-input">
+								<mat-form-field floatLabel="never" appearance="outline">
+									<div class="labels">
+										<div class="label-amount">Amount</div>
+										<div class="label-currency">Kr</div>
+									</div>
+									<input focused="true" matInput placeholder="">
+									<mat-hint></mat-hint>
+								</mat-form-field>
+							</div>
+
+							<button mat-button color="primary">Calculate</button>
+						</mat-tab>
+					</mat-tab-group>
+				</div>
+			</mat-expansion-panel>
+		</mat-accordion>
+	</div>
+</div>

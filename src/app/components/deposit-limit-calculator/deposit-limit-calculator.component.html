@@ -18,22 +18,51 @@
 					<!-- By Amount -->
 					<mat-tab-group>
 						<mat-tab label="By Amount" class="content-amount">
-							<div class="content-amount-title">
-								Enter the amount you want to deposit and we will show you the date when you will be able to do so.
+							<div *ngIf="!displayResult else result">
+								<div class="content-amount-title">
+									Enter the amount you want to deposit and we will show you the date when you will be able to do so.
+								</div>
+
+								<div class="content-amount-input">
+									<mat-form-field floatLabel="never" appearance="outline">
+										<div class="labels">
+											<div class="label-amount">Amount</div>
+											<div class="label-currency">Kr</div>
+										</div>
+										<input focused="true" matInput placeholder="" formControlName="amount" type="tel" name="famount"
+											test-id="registration-start-first-name">
+										<mat-hint></mat-hint>
+									</mat-form-field>
+								</div>
+
+								<button mat-button color="primary" (click)="onCalculate(true)">Calculate</button>
 							</div>
 
-							<div class="content-amount-input">
-								<mat-form-field floatLabel="never" appearance="outline">
-									<div class="labels">
-										<div class="label-amount">Amount</div>
-										<div class="label-currency">Kr</div>
+							<ng-template #result>
+								<div class="result-container">
+									<div class="result-container-header">
+										Next time you can deposit
+										<span class="result-container-amount">
+											Kr
+											{{ calculatedResult }}
+											is:
+										</span>
 									</div>
-									<input focused="true" matInput placeholder="">
-									<mat-hint></mat-hint>
-								</mat-form-field>
-							</div>
-
-							<button mat-button color="primary">Calculate</button>
+									<div class="result-container-date">
+										Monday, 13th April 2022
+									</div>
+									<div class="result-container-time">
+										@ 07.30 PM
+									</div>
+									<div class="buttons">
+										<button mat-button color="primary" (click)="onRemindMe()">
+											<mat-icon>notifications</mat-icon> Remind Me
+										</button>
+										<button mat-button class="alternate" color="secondary" (click)="onCalculate(false)">Calculate
+											Again</button>
+									</div>
+								</div>
+							</ng-template>
 						</mat-tab>
 
 						<!-- By Date -->

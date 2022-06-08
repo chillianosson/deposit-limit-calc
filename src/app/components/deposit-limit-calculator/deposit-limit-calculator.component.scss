@@ -89,8 +89,42 @@ $orange: #ff6600;
   color: white;
   height: 52px;
   width: 100%;
+
+  &.alternate {
+    color: $orange;
+    background: white;
+    border: 2px solid $orange;
+  }
 }
 
 .mat-tab-label-active {
   color: #00adee !important;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  gap: 15px;
+}
+
+.result-container {
+  margin-top: 30px;
+  text-align: center;
+  &-header {
+    font-size: 16px;
+  }
+  &-header,
+  &-date {
+    margin-bottom: 5px;
+  }
+  &-date,
+  &-time {
+    font-size: 20px;
+  }
+  &-date,
+  &-time,
+  &-amount {
+    font-weight: 500;
+  }
 }

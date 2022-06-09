@@ -8,6 +8,46 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+// material overrides
+
 .mat-ink-bar {
   background-color: $orange !important;
+  top: 0;
+  bottom: unset;
+  height: 4px !important;
+}
+
+.mat-tab-label {
+  &[aria-selected="true"] {
+    color: $orange;
+  }
+
+  &[aria-selected="false"] {
+    background-color: rgba(0, 0, 0, 0.121569);
+  }
+}
+
+mat-expansion-panel-header .mat-expansion-indicator::after {
+  content: "+";
+  border: 0;
+  transform: none;
+  color: white;
+  transform: rotate(0deg);
+  background: $orange;
+  border-radius: 100%;
+  width: 20px;
+  height: 20px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: x-large;
+  align-content: center;
+}
+
+.mat-expansion-panel-header.mat-expanded .mat-expansion-indicator::after {
+  content: "--";
+  color: white;
+  font-size: x-large;
 }

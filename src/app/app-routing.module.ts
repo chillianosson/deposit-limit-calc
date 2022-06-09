@@ -1,11 +1,12 @@
-import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
-import { DepositLimitCalculatorComponent } from "./components/deposit-limit-calculator/deposit-limit-calculator.component";
+import {
+	DepositLimitCalculatorContainerComponent
+} from "./components/deposit-limit-calculator-container/deposit-limit-calculator-container.component";
 
 const routes: Routes = [
-  { path: '', component: DepositLimitCalculatorComponent },
+  { path: '', component: DepositLimitCalculatorContainerComponent },
 ];
 
 @NgModule({

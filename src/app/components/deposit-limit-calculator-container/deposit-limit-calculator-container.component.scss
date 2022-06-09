@@ -1,0 +1,14 @@
+$orange: #ff6600;
+
+.outer-container {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  .inner-container {
+    border: 1px solid black;
+    width: 375px;
+    height: 668px;
+  }
+}

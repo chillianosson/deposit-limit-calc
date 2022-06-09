@@ -11,13 +11,17 @@
       },
       "date": {
         "header": "By Date",
-        "title": "Select the date and time you want to make a deposit and we will calculate the amount you can deposit."
+        "title": "Select the date and time you want to make a deposit and we will calculate the amount you can deposit.",
+        "placeholder": "Date"
       },
       "input": {
         "errors": {
           "amount": {
             "required": "Amount of deposit is required",
             "maximum": "Maximum deposit is {{value}} based on your deposit limit"
+          },
+          "date": {
+            "required": "Date is required"
           }
         }
       },

@@ -9,6 +9,7 @@ import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { DepLimitCalcComponent } from "./components/deposit-limit-calculator-container/dep-limit-calc/dep-limit-calc.component";
+import { FormComponent } from "./components/deposit-limit-calculator-container/dep-limit-calc/form/form.component";
 import {
 	DepositLimitCalculatorContainerComponent
 } from "./components/deposit-limit-calculator-container/deposit-limit-calculator-container.component";
@@ -19,6 +20,7 @@ import { MaterialModule } from "./material/material.module";
     AppComponent,
     DepLimitCalcComponent,
     DepositLimitCalculatorContainerComponent,
+    FormComponent,
   ],
   imports: [
     BrowserModule,

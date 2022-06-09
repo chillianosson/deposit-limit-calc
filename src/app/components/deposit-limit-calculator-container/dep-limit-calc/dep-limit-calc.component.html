@@ -14,32 +14,16 @@
 			</div>
 
 			<!-- By Amount -->
-			<mat-tab-group selectedIndex="1" (selectedIndexChange)="onIndexChange()">
+			<mat-tab-group animationDuration="0ms" [selectedIndex]="selectedIndex"
+				(selectedIndexChange)="onIndexChange($event)">
 				<mat-tab label="{{ 'responsible-gaming.deposit-limit-calculator.component.amount.header' | translate}}"
 					class="content-amount">
 					<div class="content-amount-title">
 						{{ "responsible-gaming.deposit-limit-calculator.component.amount.title" | translate}}
 					</div>
 					<div class="content-amount-input">
-						<form (ngSubmit)="onCalculate()" [formGroup]="formGroup" test-id="deposit-limit-calculator">
-							<div class="content-amount-form-inner-container">
-								<mat-form-field>
-									<mat-label>{{ 'responsible-gaming.deposit-limit-calculator.component.amount.placeholder' |
-										translate:currency
-										}}
-									</mat-label>
-									<input autocomplete="off" color="primary" matInput formControlName="amount" type="tel" name="amount"
-										test-id="deposit-limit-calculator-amount">
-									<mat-error *ngIf="formGroup.controls.amount.invalid">{{getErrorMessage()}}</mat-error>
-								</mat-form-field>
-								<button type="submit" color="primary" mat-flat-button [disabled]="!formGroup.controls.amount.valid"
-									test-id="deposit-limit-calculator-submit-button">{{
-									'responsible-gaming.deposit-limit-calculator.component.button.calculate' | translate
-									}} </button>
-							</div>
-						</form>
+						<app-form [type]="type"></app-form>
 					</div>
-
 				</mat-tab>
 
 				<!-- By Date -->
@@ -48,23 +32,9 @@
 					<div class="content-date-title">
 						{{ "responsible-gaming.deposit-limit-calculator.component.date.title" | translate}}
 					</div>
-					<!-- <div class="content-date-input">
-						<form (ngSubmit)="onCalculate()" [formGroup]="formGroup" test-id="deposit-limit-calculator">
-							<div class="content-date-form-inner-container">
-								<mat-form-field>
-									<mat-label>{{ 'responsible-gaming.deposit-limit-calculator.component.date.placeholder' |
-										translate:currency
-										}}
-									</mat-label>
-									<input color="primary" matInput formControlName="date" type="tel" name="date"
-										test-id="deposit-limit-calculator-date">
-								</mat-form-field>
-								<button type="submit" color="primary" mat-flat-button
-									test-id="deposit-limit-calculator-submit-button">{{
-									'responsible-gaming.deposit-limit-calculator.component.button' | translate }}</button>
-							</div>
-						</form>
-					</div> -->
+					<div class="content-date-input">
+						<app-form [type]="type"></app-form>
+					</div>
 				</mat-tab>
 			</mat-tab-group>
 		</div>

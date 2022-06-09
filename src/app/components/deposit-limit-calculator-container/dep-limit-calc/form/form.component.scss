@@ -1,0 +1,10 @@
+.content {
+  &-form-inner-container {
+    display: grid;
+    gap: 24px;
+
+    .amount {
+      display: grid;
+    }
+  }
+}

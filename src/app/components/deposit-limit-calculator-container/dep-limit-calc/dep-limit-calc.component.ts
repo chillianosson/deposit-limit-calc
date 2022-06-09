@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, HostBinding, OnInit, ViewEncapsulation } from "@angular/core";
+import { ChangeDetectionStrategy, Component, HostBinding, OnInit, Output, ViewEncapsulation } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { TranslateService } from "@ngx-translate/core";
 
-import { DepositLimitCalculatorResult, InformationalTooltip } from "./dep-limit-calc.model";
+import { DepositLimitCalculatorResult, DepositLimitCalculatorType, InformationalTooltip } from "./dep-limit-calc.model";
 
 @Component({
   selector: 'app-dep-limit-calc',
@@ -12,78 +12,29 @@ import { DepositLimitCalculatorResult, InformationalTooltip } from "./dep-limit-
   encapsulation: ViewEncapsulation.None,
 })
 export class DepLimitCalcComponent implements OnInit {
+  result: DepositLimitCalculatorResult | undefined;
+  type = DepositLimitCalculatorType.amount;
+  informationalTooltip = InformationalTooltip;
+
   currency = { value: 'SEK' };
   max = { value: 4000 };
-  result: DepositLimitCalculatorResult | undefined;
-  displayResult = false;
-  informationalTooltip = InformationalTooltip;
-  isLoading = true;
-  formGroup: FormGroup = this.formBuilder.group({
-    amount: this.formBuilder.control('', [
-      Validators.required,
-      Validators.max(4000),
-      Validators.pattern('[0-9]+'),
-    ]),
-    date: this.formBuilder.control(''),
-    time: this.formBuilder.control(''),
-  });
+  selectedIndex = 0;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private translateService: TranslateService
-  ) {}
+  constructor(private translateService: TranslateService) {}
 
-  ngOnInit(): void {}
-
-  onCalculate(): void {
-    const data = {
-      amount: this.formGroup.controls.amount.value,
-      date: this.formGroup.controls.date.value,
-      time: this.formGroup.controls.time.value,
-    };
-
-    console.log('onCalculate called with data', data);
+  ngOnInit(): void {
+    this.selectedIndex = 1;
+    this.type = DepositLimitCalculatorType.date;
   }
 
   onRemindMe(): void {
     console.log('onRemindMe called');
   }
 
-  onIndexChange(): void {
-    const data = {
-      amount: this.formGroup.controls.amount.value,
-      date: this.formGroup.controls.date.value,
-      time: this.formGroup.controls.time.value,
-    };
-
-    console.log('index changed', data);
-    this.formGroup.reset({
-      amount: '',
-      date: '',
-      time: '',
-    });
-  }
-
-  getErrorMessage() {
-    if (this.formGroup.controls.amount.hasError('required')) {
-      return this.translateService.instant(
-        'responsible-gaming.deposit-limit-calculator.component.input.errors.amount.required'
-      );
-    }
-
-    if (this.formGroup.controls.amount.hasError('max')) {
-      return this.translateService.instant(
-        'responsible-gaming.deposit-limit-calculator.component.input.errors.amount.maximum',
-        { value: this.max.value }
-      );
-    }
-
-    if (this.formGroup.controls.amount.hasError('pattern')) {
-      return this.translateService.instant('This only accepts numbers', {
-        value: this.max.value,
-      });
-    }
-
-    return;
+  onIndexChange(index: any): void {
+    this.type =
+      index === 0
+        ? DepositLimitCalculatorType.amount
+        : DepositLimitCalculatorType.date;
   }
 }

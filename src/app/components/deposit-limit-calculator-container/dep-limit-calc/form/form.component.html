@@ -1,0 +1,31 @@
+<form (ngSubmit)="onCalculate()" [formGroup]="formGroup" test-id="testId">
+	<div class="content-form-inner-container">
+		<div class="amount" *ngIf="type === 'amount' else date">
+			<mat-form-field>
+				<mat-label>{{ 'responsible-gaming.deposit-limit-calculator.component.' + type + '.placeholder' |
+					translate:currency
+					}}
+				</mat-label>
+				<input autocomplete="off" color="primary" matInput [formControlName]="type" type="tel" [name]="type"
+					test-id="'deposit-limit-calculator-form-amount'">
+				<mat-error *ngIf="!formGroup.valid">{{getErrorMessage()}}</mat-error>
+			</mat-form-field>
+		</div>
+		<ng-template #date>
+			<mat-form-field appearance="fill">
+				<mat-label>{{ 'responsible-gaming.deposit-limit-calculator.component.' + type + '.placeholder' | translate }}
+				</mat-label>
+				<input [formControlName]="type" matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker">
+				<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+				<mat-datepicker #picker></mat-datepicker>
+				<mat-error *ngIf="!formGroup.valid">{{getErrorMessage()}}</mat-error>
+			</mat-form-field>
+
+
+		</ng-template>
+
+		<button type="submit" color="primary" mat-flat-button test-id="deposit-limit-calculator-submit-button">{{
+			'responsible-gaming.deposit-limit-calculator.component.button.calculate' | translate
+			}} </button>
+	</div>
+</form>

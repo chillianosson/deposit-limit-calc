@@ -11,7 +11,7 @@
       },
       "date": {
         "header": "By Date",
-        "title": "When and how much can i deposit?"
+        "title": "Select the date and time you want to make a deposit and we will calculate the amount you can deposit."
       },
       "input": {
         "errors": {

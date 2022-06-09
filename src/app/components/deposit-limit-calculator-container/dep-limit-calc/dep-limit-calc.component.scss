@@ -23,14 +23,20 @@
 
   &-amount {
     &-title {
-      margin-top: 24px;
-      margin-bottom: 24px;
-      text-align: center;
     }
 
     &-form-inner-container {
       display: grid;
-      gap: 42px;
+      gap: 24px;
+    }
+  }
+
+  &-date,
+  &-amount {
+    &-title {
+      margin-top: 24px;
+      margin-bottom: 24px;
+      text-align: justify;
     }
   }
 }

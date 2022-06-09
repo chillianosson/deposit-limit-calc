@@ -13,7 +13,7 @@
 					info</mat-icon>
 			</div>
 
-			<!-- By date -->
+			<!-- By Amount -->
 			<mat-tab-group selectedIndex="1" (selectedIndexChange)="onIndexChange()">
 				<mat-tab label="{{ 'responsible-gaming.deposit-limit-calculator.component.amount.header' | translate}}"
 					class="content-amount">
@@ -28,11 +28,11 @@
 										translate:currency
 										}}
 									</mat-label>
-									<input color="primary" matInput formControlName="amount" type="tel" name="amount"
+									<input autocomplete="off" color="primary" matInput formControlName="amount" type="tel" name="amount"
 										test-id="deposit-limit-calculator-amount">
 									<mat-error *ngIf="formGroup.controls.amount.invalid">{{getErrorMessage()}}</mat-error>
 								</mat-form-field>
-								<button type="submit" color="primary" mat-flat-button
+								<button type="submit" color="primary" mat-flat-button [disabled]="!formGroup.controls.amount.valid"
 									test-id="deposit-limit-calculator-submit-button">{{
 									'responsible-gaming.deposit-limit-calculator.component.button.calculate' | translate
 									}}</button>

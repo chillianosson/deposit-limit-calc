@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { FormControl, FormGroup } from "@angular/forms";
 
 @Component({
   selector: 'app-deposit-limit-calculator',
@@ -7,11 +8,19 @@ import { Component, OnInit } from "@angular/core";
 })
 export class DepositLimitCalculatorComponent implements OnInit {
   displayResult: boolean | undefined;
+  formGroup: FormGroup;
   calculatedResult = 4000;
-  constructor() {}
+
+  constructor() {
+    this.formGroup = new FormGroup({
+      amount: new FormControl(),
+      date: new FormControl(),
+      time: new FormControl(),
+    });
+  }
 
   ngOnInit(): void {
-    this.displayResult = true;
+    this.displayResult = false;
   }
 
   onCalculate(boo: boolean) {

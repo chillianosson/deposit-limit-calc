@@ -17,7 +17,7 @@
         "errors": {
           "amount": {
             "required": "Amount of deposit is required",
-            "maximum": "Maximum deposit is 4000 SEK based on your deposit limit"
+            "maximum": "Maximum deposit is {{value}} based on your deposit limit"
           }
         }
       },

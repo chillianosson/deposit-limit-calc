@@ -13,6 +13,7 @@ import { DepositLimitCalculatorResult, InformationalTooltip } from "./dep-limit-
 })
 export class DepLimitCalcComponent implements OnInit {
   currency = { value: 'SEK' };
+  max = { value: 4000 };
   result: DepositLimitCalculatorResult | undefined;
   displayResult = false;
   informationalTooltip = InformationalTooltip;
@@ -21,6 +22,7 @@ export class DepLimitCalcComponent implements OnInit {
     amount: this.formBuilder.control('', [
       Validators.required,
       Validators.max(4000),
+      Validators.pattern('[0-9]+'),
     ]),
     date: this.formBuilder.control(''),
     time: this.formBuilder.control(''),
@@ -60,12 +62,18 @@ export class DepLimitCalcComponent implements OnInit {
     }
 
     if (this.formGroup.controls.amount.hasError('max')) {
-      return 'Maximum deposit is 4000 SEK based on your deposit limit';
+      return this.translateService.instant(
+        'responsible-gaming.deposit-limit-calculator.component.input.errors.amount.maximum',
+        { value: this.max.value }
+      );
+    }
+
+    if (this.formGroup.controls.amount.hasError('pattern')) {
+      return this.translateService.instant('This only accepts numbers', {
+        value: this.max.value,
+      });
     }
 
     return;
-    // return this.formGroup.controls.amount.hasError('amount')
-    //   ? 'Not a valid amount'
-    //   : '';
   }
 }

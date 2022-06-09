@@ -17,7 +17,7 @@ export class DepLimitCalcComponent implements OnInit {
   result: DepositLimitCalculatorResult | undefined;
   displayResult = false;
   informationalTooltip = InformationalTooltip;
-
+  isLoading = true;
   formGroup: FormGroup = this.formBuilder.group({
     amount: this.formBuilder.control('', [
       Validators.required,
@@ -50,8 +50,18 @@ export class DepLimitCalcComponent implements OnInit {
   }
 
   onIndexChange(): void {
-    console.log('index changed');
-    this.formGroup.reset();
+    const data = {
+      amount: this.formGroup.controls.amount.value,
+      date: this.formGroup.controls.date.value,
+      time: this.formGroup.controls.time.value,
+    };
+
+    console.log('index changed', data);
+    this.formGroup.reset({
+      amount: '',
+      date: '',
+      time: '',
+    });
   }
 
   getErrorMessage() {

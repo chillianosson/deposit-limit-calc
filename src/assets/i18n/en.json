@@ -6,8 +6,13 @@
       "info": "Once you’ve reached your deposit limits, it might be tricky to understand when and how much you can deposit again. This tool will allow you to know exactly when and up to what amount you will be able to make your next deposit.",
       "amount": {
         "header": "By Amount",
-        "title": "Enter the amount you want to deposit and we will show you the date when you will be able to do so"
-      }
+        "title": "Enter the amount you want to deposit and we will show you the date when you will be able to do so",
+        "placeholder": "Amount {{value}}"
+      },
+      "date": {
+        "header": "By Date"
+      },
+      "button": "Calculate"
     }
   }
 }

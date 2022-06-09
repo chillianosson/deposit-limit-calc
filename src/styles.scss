@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 $orange: #ff6600;
+$green: #40b840;
+
 html,
 body {
   height: 100%;
@@ -54,4 +56,8 @@ mat-expansion-panel-header .mat-expansion-indicator::after {
 
 .mat-expansion-panel-body {
   padding: 16px;
+}
+
+.mat-flat-button.mat-primary {
+  background-color: $green;
 }

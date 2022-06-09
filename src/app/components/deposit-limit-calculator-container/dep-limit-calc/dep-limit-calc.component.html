@@ -20,6 +20,24 @@
 					<div class="content-amount-title">
 						{{ "responsible-gaming.deposit-limit-calculator.component.amount.title" | translate}}
 					</div>
+					<div class="content-amount-input">
+						<form (ngSubmit)="onCalculate()" [formGroup]="formGroup" test-id="deposit-limit-calculator">
+							<div class="content-amount-form-inner-container">
+								<mat-form-field>
+									<mat-label>{{ 'responsible-gaming.deposit-limit-calculator.component.amount.placeholder' |
+										translate:currency
+										}}
+									</mat-label>
+									<input color="primary" matInput formControlName="amount" type="tel" name="amount"
+										test-id="deposit-limit-calculator-amount">
+								</mat-form-field>
+								<button type="submit" color="primary" mat-flat-button
+									test-id="deposit-limit-calculator-submit-button">{{
+									'responsible-gaming.deposit-limit-calculator.component.button' | translate }}</button>
+							</div>
+						</form>
+					</div>
+
 				</mat-tab>
 
 				<!-- By Date -->

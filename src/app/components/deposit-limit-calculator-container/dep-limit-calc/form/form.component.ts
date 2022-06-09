@@ -65,6 +65,13 @@ export class FormComponent implements OnInit, OnChanges {
     }
   }
 
+  getDisabled() {
+    return this.type === 'amount'
+      ? this.formGroup.controls.amount.invalid
+      : this.formGroup.controls.date.invalid ||
+          this.formGroup.controls.time.invalid;
+  }
+
   resetForm(form: FormGroupDirective) {
     if (form) {
       form.resetForm({
@@ -98,10 +105,6 @@ export class FormComponent implements OnInit, OnChanges {
     // Prevent Saturday and Sunday from being selected.
     return day !== this.forbidden[0] && day !== this.forbidden[1];
   };
-
-  openCalendar() {
-    // console.log('thing is ', thing);
-  }
 
   getTimeErrors() {
     if (this.formGroup.controls.time.hasError('required')) {

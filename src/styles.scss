@@ -66,3 +66,11 @@ mat-expansion-panel-header .mat-expansion-indicator::after {
 .mat-form-field.ng-valid.mat-focused .mat-form-field-ripple {
   background-color: #61aa00;
 }
+
+.mat-form-field-infix {
+  width: 100% !important;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: unset;
+}

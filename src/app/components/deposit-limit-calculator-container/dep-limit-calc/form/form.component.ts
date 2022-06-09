@@ -1,4 +1,15 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation } from "@angular/core";
+import {
+	ChangeDetectionStrategy,
+	Component,
+	EventEmitter,
+	Input,
+	OnChanges,
+	OnInit,
+	Output,
+	SimpleChange,
+	ViewChild,
+	ViewEncapsulation
+} from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDatepicker } from "@angular/material/datepicker";
 import { TranslateService } from "@ngx-translate/core";
@@ -12,7 +23,7 @@ import { DepositLimitCalcFormValue, DepositLimitCalculatorType } from "../dep-li
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class FormComponent implements OnInit {
+export class FormComponent implements OnInit, OnChanges {
   @Output() calculate = new EventEmitter<DepositLimitCalcFormValue>();
   @ViewChild(MatDatepicker) datepicker: MatDatepicker<Date> | undefined;
 
@@ -28,7 +39,7 @@ export class FormComponent implements OnInit {
       Validators.pattern('[0-9]+'),
     ]),
     date: this.formBuilder.control('', Validators.required),
-    time: this.formBuilder.control(''),
+    time: this.formBuilder.control('', Validators.required),
   });
 
   forbidden: number[] = [];
@@ -39,9 +50,16 @@ export class FormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('testId is ', this.testId);
     console.log('type is ', this.type);
-    console.log('this.datepicker is ', this.datepicker);
+  }
+
+  ngOnChanges(changes: { type?: SimpleChange }): void {
+    console.log('type is ', this.type);
+    this.formGroup.reset();
+  }
+
+  onFocused(thingy: any) {
+    console.log('thingy is ', thingy);
   }
 
   onCalculate(): void {
@@ -64,18 +82,23 @@ export class FormComponent implements OnInit {
     return day !== this.forbidden[0] && day !== this.forbidden[1];
   };
 
-  getErrorMessage() {
-    if (
-      this.formGroup.controls.amount.hasError('required') ||
-      this.formGroup.controls.date.hasError('required')
-    ) {
-      return this.type === DepositLimitCalculatorType.amount
-        ? this.translateService.instant(
-            'responsible-gaming.deposit-limit-calculator.component.input.errors.amount.required'
-          )
-        : this.translateService.instant(
-            'responsible-gaming.deposit-limit-calculator.component.input.errors.date.required'
-          );
+  openCalendar() {
+    // console.log('thing is ', thing);
+  }
+
+  getTimeErrors() {
+    if (this.formGroup.controls.time.hasError('required')) {
+      return this.translateService.instant(
+        'responsible-gaming.deposit-limit-calculator.component.input.errors.time.required'
+      );
+    }
+  }
+
+  getAmountErrors() {
+    if (this.formGroup.controls.amount.hasError('required')) {
+      return this.translateService.instant(
+        'responsible-gaming.deposit-limit-calculator.component.input.errors.amount.required'
+      );
     }
 
     if (this.formGroup.controls.amount.hasError('max')) {
@@ -90,7 +113,13 @@ export class FormComponent implements OnInit {
         value: this.max.value,
       });
     }
+  }
 
-    return;
+  getDateErrors() {
+    if (this.formGroup.controls.amount.hasError('required')) {
+      return this.translateService.instant(
+        'responsible-gaming.deposit-limit-calculator.component.input.errors.date.required'
+      );
+    }
   }
 }

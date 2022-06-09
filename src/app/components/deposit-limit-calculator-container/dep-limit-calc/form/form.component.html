@@ -8,20 +8,32 @@
 				</mat-label>
 				<input autocomplete="off" color="primary" matInput [formControlName]="type" type="tel" [name]="type"
 					test-id="'deposit-limit-calculator-form-amount'">
-				<mat-error *ngIf="!formGroup.valid">{{getErrorMessage()}}</mat-error>
+				<mat-error *ngIf="!formGroup.valid">{{getAmountErrors()}}</mat-error>
 			</mat-form-field>
 		</div>
 		<ng-template #date>
-			<mat-form-field appearance="fill">
-				<mat-label>{{ 'responsible-gaming.deposit-limit-calculator.component.' + type + '.placeholder' | translate }}
-				</mat-label>
-				<input [formControlName]="type" matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker">
-				<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-				<mat-datepicker #picker></mat-datepicker>
-				<mat-error *ngIf="!formGroup.valid">{{getErrorMessage()}}</mat-error>
-			</mat-form-field>
+			<div class="date-and-time">
 
+				<mat-form-field>
+					<mat-label>{{ 'responsible-gaming.deposit-limit-calculator.component.' + type + '.placeholder' | translate }}
+					</mat-label>
+					<input autocomplete="off" [formControlName]="type" matInput [matDatepickerFilter]="myFilter"
+						(focus)="onFocused(dateToggle)" [matDatepicker]="picker">
+					<mat-datepicker-toggle #dateToggle matSuffix [for]="picker"></mat-datepicker-toggle>
+					<mat-datepicker touchUi=true #picker></mat-datepicker>
+					<mat-error *ngIf="!formGroup.controls.date.valid">{{getDateErrors()}}</mat-error>
+				</mat-form-field>
 
+				<mat-form-field>
+					<mat-label>{{ 'responsible-gaming.deposit-limit-calculator.component.time.placeholder' |
+						translate
+						}}
+					</mat-label>
+					<input autocomplete="off" color="primary" matInput formControlName="time" type="time" name="time"
+						test-id="'deposit-limit-calculator-form-time'">
+					<mat-error *ngIf="!formGroup.controls.time.valid">{{getTimeErrors()}}</mat-error>
+				</mat-form-field>
+			</div>
 		</ng-template>
 
 		<button type="submit" color="primary" mat-flat-button test-id="deposit-limit-calculator-submit-button">{{

@@ -10,11 +10,11 @@ import {
 	ViewChild,
 	ViewEncapsulation
 } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, FormGroupDirective, Validators } from "@angular/forms";
 import { MatDatepicker } from "@angular/material/datepicker";
 import { TranslateService } from "@ngx-translate/core";
 
-import { DepositLimitCalcFormValue, DepositLimitCalculatorType } from "../dep-limit-calc.model";
+import { DepositLimitCalcFormValue } from "../dep-limit-calc.model";
 
 @Component({
   selector: 'app-form',
@@ -26,6 +26,9 @@ import { DepositLimitCalcFormValue, DepositLimitCalculatorType } from "../dep-li
 export class FormComponent implements OnInit, OnChanges {
   @Output() calculate = new EventEmitter<DepositLimitCalcFormValue>();
   @ViewChild(MatDatepicker) datepicker: MatDatepicker<Date> | undefined;
+  @ViewChild('form', { static: true }) depositLimitForm:
+    | FormGroupDirective
+    | undefined;
 
   @Input() max = { value: 4000 };
   @Input() currency = { value: 'SEK' };
@@ -55,7 +58,21 @@ export class FormComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: { type?: SimpleChange }): void {
     console.log('type is ', this.type);
-    this.formGroup.reset();
+    if (changes.type) {
+      if (this.depositLimitForm) {
+        this.resetForm(this.depositLimitForm);
+      }
+    }
+  }
+
+  resetForm(form: FormGroupDirective) {
+    if (form) {
+      form.resetForm({
+        amount: '',
+        date: '',
+        time: '',
+      });
+    }
   }
 
   onFocused(thingy: any) {

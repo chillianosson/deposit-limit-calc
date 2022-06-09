@@ -2,14 +2,12 @@
 	<mat-expansion-panel [expanded]="true">
 		<mat-expansion-panel-header class="header">
 			<mat-panel-title class="title">
-				{{"responsible-gaming.deposit-limit-calculator.menu-title" |translate}}
-				<!-- responsible-gaming.deposit-limit-calculator  -->
+				{{"responsible-gaming.deposit-limit-calculator.menu-title" | translate}}
 			</mat-panel-title>
 		</mat-expansion-panel-header>
 		<div class="content">
 			<div class="content-title">
-				<p>When and how much can i deposit?</p>
-				<!-- responsible-gaming.deposit-limit-calculator.title -->
+				{{ "responsible-gaming.deposit-limit-calculator.component.title" | translate}}
 				<mat-icon [matTooltip]=informationalTooltip class="icon-display" aria-hidden="false"
 					aria-label="Example home icon" [ngStyle]="{'color':'grey'}">
 					info</mat-icon>
@@ -17,8 +15,11 @@
 
 			<!-- By Amount -->
 			<mat-tab-group selectedIndex="0">
-				<mat-tab label="By Amount" class="content-amount">
-
+				<mat-tab label="{{ 'responsible-gaming.deposit-limit-calculator.component.amount.header' | translate}}"
+					class="content-amount">
+					<div class="content-amount-title">
+						{{ "responsible-gaming.deposit-limit-calculator.component.amount.title" | translate}}
+					</div>
 				</mat-tab>
 
 				<!-- By Date -->

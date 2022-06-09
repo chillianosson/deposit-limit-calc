@@ -7,7 +7,7 @@
       "amount": {
         "header": "By Amount",
         "title": "Enter the amount you want to deposit and we will show you the date when you will be able to do so",
-        "placeholder": "Amount {{value}}"
+        "placeholder": "Amount ({{value}})"
       },
       "date": {
         "header": "By Date"

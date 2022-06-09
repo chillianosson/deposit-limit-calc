@@ -27,13 +27,13 @@ export class DepLimitCalcComponent implements OnInit {
   ngOnInit(): void {}
 
   onCalculate(): void {
-    console.log('onCalculate called');
-
     const data = {
       amount: this.formGroup.controls.amount.value,
       date: this.formGroup.controls.date.value,
       time: this.formGroup.controls.time.value,
     };
+
+    console.log('onCalculate called with data', data);
   }
 
   onRemindMe(): void {

@@ -61,3 +61,8 @@ mat-expansion-panel-header .mat-expansion-indicator::after {
 .mat-flat-button.mat-primary {
   background-color: $green;
 }
+
+.mat-form-field.ng-valid .mat-form-field-underline,
+.mat-form-field.ng-valid.mat-focused .mat-form-field-ripple {
+  background-color: $green;
+}

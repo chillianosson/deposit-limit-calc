@@ -10,9 +10,20 @@
         "placeholder": "Amount ({{value}})"
       },
       "date": {
-        "header": "By Date"
+        "header": "By Date",
+        "title": "When and how much can i deposit?"
       },
-      "button": "Calculate"
+      "input": {
+        "errors": {
+          "amount": {
+            "required": "Amount of deposit is required",
+            "maximum": "Maximum deposit is 4000 SEK based on your deposit limit"
+          }
+        }
+      },
+      "button": {
+        "calculate": "Calculate"
+      }
     }
   }
 }

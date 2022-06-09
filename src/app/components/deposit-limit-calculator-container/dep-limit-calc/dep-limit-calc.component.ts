@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, HostBinding, OnInit, ViewEncapsulation } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { TranslateService } from "@ngx-translate/core";
 
 import { DepositLimitCalculatorResult, InformationalTooltip } from "./dep-limit-calc.model";
 
@@ -17,12 +18,18 @@ export class DepLimitCalcComponent implements OnInit {
   informationalTooltip = InformationalTooltip;
 
   formGroup: FormGroup = this.formBuilder.group({
-    amount: this.formBuilder.control(''),
+    amount: this.formBuilder.control('', [
+      Validators.required,
+      Validators.max(4000),
+    ]),
     date: this.formBuilder.control(''),
     time: this.formBuilder.control(''),
   });
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private translateService: TranslateService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -38,5 +45,27 @@ export class DepLimitCalcComponent implements OnInit {
 
   onRemindMe(): void {
     console.log('onRemindMe called');
+  }
+
+  onIndexChange(): void {
+    console.log('index changed');
+    this.formGroup.reset();
+  }
+
+  getErrorMessage() {
+    if (this.formGroup.controls.amount.hasError('required')) {
+      return this.translateService.instant(
+        'responsible-gaming.deposit-limit-calculator.component.input.errors.amount.required'
+      );
+    }
+
+    if (this.formGroup.controls.amount.hasError('max')) {
+      return 'Maximum deposit is 4000 SEK based on your deposit limit';
+    }
+
+    return;
+    // return this.formGroup.controls.amount.hasError('amount')
+    //   ? 'Not a valid amount'
+    //   : '';
   }
 }

@@ -32,7 +32,6 @@ export class FormComponent implements OnInit, OnChanges {
 
   @Input() max = { value: 4000 };
   @Input() currency = { value: 'SEK' };
-  @Input() testId = '';
   @Input() type = '';
 
   formGroup: FormGroup = this.formBuilder.group({
@@ -52,16 +51,16 @@ export class FormComponent implements OnInit, OnChanges {
     private translateService: TranslateService
   ) {}
 
-  ngOnInit(): void {
-    console.log('type is ', this.type);
-  }
+  ngOnInit(): void {}
 
   ngOnChanges(changes: { type?: SimpleChange }): void {
     console.log('type is ', this.type);
-    if (changes.type) {
-      if (this.depositLimitForm) {
-        this.resetForm(this.depositLimitForm);
-      }
+    if (changes.type?.currentValue !== changes.type?.previousValue) {
+      this.depositLimitForm?.resetForm({
+        amount: '',
+        date: '',
+        time: '',
+      });
     }
   }
 
@@ -96,7 +95,6 @@ export class FormComponent implements OnInit, OnChanges {
     this.calculate.emit({
       data,
     });
-    console.log('testId is ', this.testId);
     console.log('onCalculate called with data', data);
   }
 

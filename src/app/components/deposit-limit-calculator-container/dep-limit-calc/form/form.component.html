@@ -1,4 +1,4 @@
-<form (ngSubmit)="onCalculate()" [formGroup]="formGroup" test-id="testId" #form="ngForm">
+<form (ngSubmit)="onCalculate()" [formGroup]="formGroup" test-id="testId" #form="ngForm" id="form">
 	<div class="content-form-inner-container">
 		<div class="amount" *ngIf="type === 'amount' else dateAndTime">
 			<mat-form-field>

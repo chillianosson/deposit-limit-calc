@@ -23,8 +23,7 @@ export class DepLimitCalcComponent implements OnInit {
   constructor(private translateService: TranslateService) {}
 
   ngOnInit(): void {
-    this.selectedIndex = 1;
-    this.type = DepositLimitCalculatorType.date;
+    this.onIndexChange(0);
   }
 
   onRemindMe(): void {
